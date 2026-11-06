@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin - Fajar Laundry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="admin-page">
+
+<!-- Navbar Admin -->
+<nav class="navbar navbar-expand-md sticky-top">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2 m-0" href="index.html">
+      <span class="brand-dot">
+        <span class="brand-shine"></span>
+      </span> 
+      <span class="brand-text">Fajar Laundry <small class="fw-normal text-muted fs-6">Admin</small></span>
+    </a>
+    <a class="btn btn-outline-light btn-sm rounded-pill" href="index.html">← Ke Halaman Utama</a>
+  </div>
+</nav>
+
+<div class="container py-3">
+  
+  <!-- Section Form Login -->
+  <div id="loginSection" class="row justify-content-center pt-2 pb-4">
+    <div class="col-md-5 col-lg-4">
+      <div class="dark-card p-4 shadow">
+        <h2 class="h4 fw-bold mb-3 text-center text-white">Masuk Admin</h2>
+        <p class="text-muted small text-center mb-4">Silakan masuk untuk mengelola pesanan & layanan.</p>
+
+        <form id="loginForm" class="d-flex flex-column gap-3">
+          <div>
+            <label class="form-label small text-muted">Username</label>
+            <input class="form-control form-control-dark" id="username" required placeholder="Masukkan username">
+          </div>
+          <div>
+            <label class="form-label small text-muted">Password</label>
+            <input type="password" class="form-control form-control-dark" id="password" required placeholder="Masukkan password">
+          </div>
+          <button class="btn btn-cyan mt-2">Masuk Panel Admin</button>
+          <div id="loginMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Admin -->
+  <div id="dashboardSection" class="d-none">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <div>
+        <h1 class="h3 fw-bold text-white mb-1">Dashboard Kelola Laundry</h1>
+        <p class="text-muted mb-0">Kelola daftar pesanan masuk dan atur daftar layanan laundry.</p>
+      </div>
+      <button id="btnLogout" class="btn btn-outline-danger btn-sm rounded-pill px-3">Keluar (Logout)</button>
+    </div>
+
+    <!-- Navigasi Tab Admin -->
+    <ul class="nav nav-pills mb-4 gap-2" id="adminTabs" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" id="btnTabOrders" data-bs-toggle="pill" data-bs-target="#tabOrders" type="button">Daftar Pesanan</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="btnTabServices" data-bs-toggle="pill" data-bs-target="#tabServices" type="button">Layanan & Harga</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="adminTabContent">
+      <!-- TAB 1: Kelola Pesanan -->
+      <div class="tab-pane fade show active" id="tabOrders" role="tabpanel">
+        <div class="dark-card">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="h5 fw-bold text-white mb-0">Pesanan Masuk</h3>
+            <button class="btn btn-sm btn-outline-info" onclick="loadOrders()">🔄 Refresh Data</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+              <thead>
+                <tr class="align-middle text-center">
+                  <th style="width: 18%;">Kode & Waktu</th>
+                  <th style="width: 28%;" class="text-start">Pelanggan & Alamat</th>
+                  <th style="width: 24%;" class="text-start">Layanan & Catatan</th>
+                  <th style="width: 14%;">Total & Pembayaran</th>
+                  <th style="width: 8%;">Status</th>
+                  <th style="width: 8%;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Kelola Layanan -->
+      <div class="tab-pane fade" id="tabServices" role="tabpanel">
+        <div class="dark-card">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="h5 fw-bold text-white mb-0">Daftar Layanan</h3>
+            <button class="btn btn-sm btn-cyan" onclick="openServiceModal()">+ Tambah Layanan</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+              <thead>
+                <tr class="align-middle text-center">
+                  <th class="text-start ps-3">Nama Layanan</th>
+                  <th>Satuan</th>
+                  <th>Harga / Unit</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="servicesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Form Tambah / Edit Layanan -->
+<div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content dark-card p-3">
+      <div class="modal-header border-bottom border-secondary pb-2">
+        <h5 class="modal-title fw-bold text-white" id="serviceModalTitle">Tambah Layanan Baru</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-3">
+        <form id="serviceForm" class="d-flex flex-column gap-3">
+          <input type="hidden" id="serviceId">
+          
+          <div>
+            <label class="form-label small text-muted">Nama Layanan</label>
+            <input type="text" class="form-control form-control-dark" id="serviceName" required placeholder="Contoh: Cuci Karpet">
+          </div>
+
+          <div class="row g-2">
+            <div class="col-6">
+              <label class="form-label small text-muted">Tipe</label>
+              <select class="form-select form-select-dark" id="serviceType" required>
+                <option value="Kiloan">Kiloan</option>
+                <option value="Satuan">Satuan</option>
+                <option value="Express">Express</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label small text-muted">Satuan Unit</label>
+              <select class="form-select form-select-dark" id="serviceUnit" required>
+                <option value="kg">kg</option>
+                <option value="pcs">pcs</option>
+                <option value="m2">m2</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label small text-muted">Harga per Unit (Rp)</label>
+            <input type="number" class="form-control form-control-dark" id="servicePrice" required placeholder="Contoh: 10000">
+          </div>
+
+          <div>
+            <label class="form-label small text-muted">Deskripsi / Keterangan</label>
+            <textarea class="form-control form-control-dark" id="serviceDesc" rows="2" placeholder="Contoh: Selesai dalam 2 hari"></textarea>
+          </div>
+
+          <div class="d-flex justify-content-end gap-2 mt-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-cyan btn-sm rounded-pill px-4" style="width:auto;">Simpan Layanan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

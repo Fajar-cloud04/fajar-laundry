@@ -1,0 +1,393 @@
+:root {
+  --bg-dark: #0b1d28;
+  --bg-card: #132a38;
+  --bg-card-inner: #0f2330;
+  --cyan-accent: #3bc8e7;
+  --cyan-hover: #2baecb;
+  --yellow-accent: #ffc82c;
+  --text-light: #ffffff;
+  --text-muted: #94a3b8;
+  --border-color: #1e3a4c;
+}
+
+/* Scroll Offset Global Pas Di Bawah Navbar Sticky */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;
+}
+
+body {
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* Navbar Sticky */
+.navbar {
+  background-color: var(--bg-dark) !important;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.8rem 0;
+  z-index: 1030;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.navbar-brand {
+  font-size: 1.4rem;
+  color: #fff !important;
+}
+
+/* Logo Lingkaran & Kilapan */
+.brand-dot {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-color: #ffc82c;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.brand-shine {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+.brand-text {
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: #ffffff !important;
+}
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 600;
+  margin: 0 0.5rem;
+}
+.nav-link:hover {
+  color: var(--text-light) !important;
+}
+
+/* Hero Section Presisi Persis Foto Screenshot */
+.hero {
+  padding: 2.5rem 0 3rem 0 !important; /* Tambahkan ruang atas agar teks turun pas seperti foto */
+  background-color: var(--bg-dark);
+}
+
+.hero-title {
+  font-size: 3.8rem !important; /* Ukuran font pas sesuai screenshot */
+  font-weight: 900 !important;   /* Ekstra bold */
+  line-height: 1.05 !important;  /* Jarak baris rapat */
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem !important;
+  color: #ffffff !important;
+}
+
+.hero p.text-muted {
+  font-size: 1.15rem !important;
+  color: #94a3b8 !important;
+  line-height: 1.45 !important;
+  margin-bottom: 1.8rem !important;
+  max-width: 480px;
+}
+
+/* Tombol Kuning & Badge */
+.btn-yellow {
+  background-color: var(--yellow-accent);
+  color: #000;
+  font-weight: 800;
+  font-size: 1rem;
+  border-radius: 2rem;
+  padding: 0.75rem 1.8rem;
+  border: none;
+}
+
+.btn-yellow:hover {
+  background-color: #e5b324;
+  color: #000;
+}
+
+/* Dark Cards & Calculator */
+.dark-card {
+  background-color: var(--bg-card);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+}
+.form-control-dark, .form-select-dark {
+  background-color: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+.form-control-dark:focus, .form-select-dark:focus {
+  background-color: var(--bg-card-inner);
+  border-color: var(--cyan-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Counter +/- */
+.btn-qty {
+  background-color: var(--bg-card-inner);
+  border: 1px solid var(--border-color);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 0.4rem;
+  font-weight: bold;
+}
+.btn-cyan {
+  background-color: var(--cyan-accent);
+  color: #0c2330;
+  font-weight: 800;
+  border-radius: 0.6rem;
+  padding: 0.8rem;
+  border: none;
+  width: 100%;
+}
+.btn-cyan:hover {
+  background-color: var(--cyan-hover);
+  color: #0c2330;
+}
+
+/* Step Cards */
+.step-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.85rem;
+  padding: 1.8rem 1.4rem;
+  height: 100%;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.step-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan-accent);
+}
+.step-num {
+  width: 36px;
+  height: 36px;
+  background-color: var(--yellow-accent);
+  color: #000;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+/* Pill Badges */
+.badge-pill-dark {
+  background-color: var(--bg-card);
+  color: #cbd5e1;
+  border-radius: 1rem;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+}
+
+/* Form & Text Styling */
+.form-label, .text-muted, label {
+  color: #cbd5e1 !important;
+}
+.form-control-dark::placeholder,
+textarea.form-control-dark::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+.form-control-dark, .form-select-dark {
+  color: #ffffff !important;
+}
+.form-select-dark option {
+  background-color: #132a38;
+  color: #ffffff;
+}
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* Card Layanan & Harga */
+.service-price-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.85rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.service-price-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyan-accent);
+}
+
+/* SEKSI KONTAK FULL-WIDTH & SCROLL PRESISI */
+.section-kontak {
+  background-color: #11364a;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  padding-top: 2.5rem !important;
+  padding-bottom: 4rem !important;
+}
+
+/* Mode Terang */
+body.light-mode {
+  --bg-dark: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-inner: #f1f5f9;
+  --text-light: #0f172a;
+  --text-muted: #475569;
+  --border-color: #cbd5e1;
+}
+
+/* 1. Header & Judul */
+body.light-mode .brand-text,
+body.light-mode .hero-title,
+body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4, body.light-mode h5 {
+  color: #0f172a !important;
+}
+
+/* 2. Teks Navigasi Navbar */
+body.light-mode .navbar {
+  background-color: #ffffff !important;
+  border-bottom-color: #e2e8f0 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-mode .nav-link {
+  color: #334155 !important; /* Warna teks menu navbar dipertegas */
+  font-weight: 700 !important;
+}
+
+body.light-mode .nav-link:hover {
+  color: #0284c7 !important;
+}
+
+/* 3. Label, Paragraf, dan Teks Muted */
+body.light-mode .form-label,
+body.light-mode .text-muted,
+body.light-mode label,
+body.light-mode p {
+  color: #475569 !important;
+}
+
+/* 4. Form Input & Dropdown */
+body.light-mode .form-control-dark,
+body.light-mode .form-select-dark {
+  color: #0f172a !important;
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.light-mode .form-control-dark::placeholder,
+body.light-mode textarea.form-control-dark::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+body.light-mode .form-select-dark option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* 5. Pill Badges (Selesai 2 hari, Express 6 jam, Antar jemput) */
+body.light-mode .badge-pill-dark {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+  font-weight: 700 !important;
+}
+
+/* 6. Cards & Step Cards */
+body.light-mode .dark-card,
+body.light-mode .step-card,
+body.light-mode .service-price-card {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+body.light-mode .btn-qty {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* 7. Seksi Kontak & Footer Mode Terang */
+body.light-mode #kontak, 
+body.light-mode .section-kontak {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* 8. Tombol Toggle Tema */
+body.light-mode .btn-theme-toggle {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Tombol Toggle Tema */
+.btn-theme-toggle {
+  background-color: var(--bg-card);
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  border-radius: 2rem;
+  padding: 0.35rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+.btn-theme-toggle:hover {
+  border-color: var(--cyan-accent);
+  color: var(--cyan-accent);
+}
+
+/* Penyesuaian Khusus Halaman Admin */
+body.admin-page {
+  background-color: var(--bg-dark) !important;
+  min-height: 100vh;
+}
+
+/* Nav Pills di Admin Dashboard */
+.admin-page .nav-pills .nav-link {
+  background-color: var(--bg-card);
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.admin-page .nav-pills .nav-link.active {
+  background-color: var(--cyan-accent);
+  color: #0c2330 !important;
+  border-color: var(--cyan-accent);
+}
+
+/* Styling Tabel Admin */
+.admin-page .table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--text-light);
+  border-color: var(--border-color);
+}
+
+.admin-page .table th {
+  color: var(--text-muted);
+  font-weight: 700;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Styling Header Tabel Admin Presisi Rata Tengah */
+.admin-page .table th {
+  color: #94a3b8 !important;
+  font-weight: 800 !important;
+  vertical-align: middle !important;
+  padding: 1rem 0.75rem !important;
+  border-bottom: 2px solid var(--border-color) !important;
+  letter-spacing: 0.02em;
+}
+
